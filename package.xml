@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>pacmod_game_control</name>
+  <name>pacmod2_game_control</name>
   <version>3.0.2</version>
-  <description>ROS Package for controlling the AStuff PACMod with a Joystick</description>
+  <description>ROS Package for controlling the AStuff PACMod2 with a Joystick</description>
   <license>MIT</license>
 
-  <url type="website">http://wiki.ros.org/pacmod_game_control</url>
-  <url type="repository">https://github.com/astuff/pacmod_game_control</url>
-  <url type="bugtracker">https://github.com/astuff/pacmod_game_control/issues</url>
+  <url type="repository">https://github.com/astuff/pacmod2_game_control</url>
+  <url type="bugtracker">https://github.com/astuff/pacmod2_game_control/issues</url>
 
   <maintainer email="software@autonomoustuff.com">AutonomouStuff Software Development Team</maintainer>
   <author email="jdriscoll@autonomoustuff.com">Joe Driscoll</author>

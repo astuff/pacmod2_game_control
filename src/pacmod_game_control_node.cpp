@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     return 0;
 
   // Check ROS params for board type
-  int board_rev = 1;
+  int board_rev = 2;
   priv.getParam("pacmod_board_rev", board_rev);
 
   // Create an instance of the appropriate board type
