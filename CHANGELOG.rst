@@ -2,8 +2,8 @@
 Changelog for package pacmod2_game_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+4.0.0 (2021-12-21)
+------------------
 * Add missing includes to satisfy roslint
 * Convert to pacmod2_game_control
 * Contributors: Ian Colwell
