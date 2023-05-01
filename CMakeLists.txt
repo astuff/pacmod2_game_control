@@ -1,58 +1,34 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 project(pacmod2_game_control)
 
-add_definitions(-std=c++11)
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
 
-find_package(catkin REQUIRED COMPONENTS
-  roslint
-  roscpp
-  std_msgs
-  sensor_msgs
-  pacmod_msgs
-  joy
-)
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-catkin_package(CATKIN_DEPENDS
-  std_msgs
-  sensor_msgs
-  pacmod_msgs
-  joy
-)
+find_package(ament_cmake_auto REQUIRED)
 
-include_directories(include
-  ${catkin_INCLUDE_DIRS}
-)
+ament_auto_find_build_dependencies()
 
-add_executable(pacmod2_game_control_node
+# Build
+ament_auto_add_library(${PROJECT_NAME}_node SHARED
   src/pacmod_game_control_node.cpp
   src/startup_checks.cpp
-  src/publish_control_board_rev2.cpp
-  src/publish_control_board_rev3.cpp
-  src/publish_control.cpp
-  src/publish_control_factory.cpp
+  src/controllers.cpp
 )
 
-add_dependencies(pacmod2_game_control_node
-  ${${PROJECT_NAME}_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
-target_link_libraries(pacmod2_game_control_node
-  ${catkin_LIBRARIES}
+ament_auto_add_executable(${PROJECT_NAME}_exec
+  src/pacmod_game_control_exec.cpp
 )
 
-set(ROSLINT_CPP_OPTS "--filter=-build/namespaces,-build/c++11")
-roslint_cpp()
-
-install(TARGETS pacmod2_game_control_node
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-install(DIRECTORY launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-
+# Install
 install(FILES README.md
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+ament_auto_package(INSTALL_TO_SHARE
+  launch
 )
